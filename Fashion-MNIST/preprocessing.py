@@ -1,3 +1,4 @@
+import torch
 import torchvision
 import torchvision.transforms as transforms
 import numpy as np
@@ -40,4 +41,5 @@ def make_env(batch_size):
 
     train_loader, test_loader = prep_data(train_data, test_data, batch_size)
 
-    return train_loader, test_loader, labels
+    print('environment made...')
+    return train_loader, test_loader, labels, test_data
