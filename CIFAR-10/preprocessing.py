@@ -26,19 +26,12 @@ def get_data():
         transform = transforms.ToTensor(),
         download = True)
 
-    # Make one for testing
-    train_data_fixed = torchvision.datasets.CIFAR10(
-        root='.',
-        train=True,
-        transform=transforms.ToTensor(),
-        download=True)
-
     labels = len(set(train_data.targets))
 
-    return train_data, test_data, train_data_fixed, labels
+    return train_data, test_data, labels
     
 # prep data
-def prep_data(train, test, train_fixed, batch_size):
+def prep_data(train, test, batch_size):
     train_loader = torch.utils.data.DataLoader(dataset = train,
                                            batch_size = batch_size,
                                            shuffle = True)
@@ -47,11 +40,7 @@ def prep_data(train, test, train_fixed, batch_size):
                                            batch_size = batch_size,
                                            shuffle = False)
     
-    train_loader_fixed = torch.utils.data.DataLoader(dataset = train_fixed, 
-                                                    batch_size = batch_size, 
-                                                    shuffle = False)
-    
-    return train_loader, test_loader, train_loader_fixed
+    return train_loader, test_loader
 
 # Batch normalisation
 def batch_norm():
@@ -60,9 +49,9 @@ def batch_norm():
 # make environment
 def make_env(batch_size):
     
-    train_data, test_data, train_data_fixed, labels = get_data()
+    train_data, test_data, labels = get_data()
 
-    train_loader, test_loader, train_loader_fixed = prep_data(train_data, test_data, train_data_fixed, batch_size)
+    train_loader, test_loader = prep_data(train_data, test_data, batch_size)
 
     print('environment made...')
-    return train_loader, test_loader, labels, test_data, train_loader_fixed
+    return train_loader, test_loader, labels, test_data
