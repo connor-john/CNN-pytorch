@@ -36,4 +36,15 @@ transformer_train = torchvision.transforms.Compose([
  
 <img src ="CIFAR-10/plots/confusion_matrix_CIFAR10.png" width = 400>
 
-</br>
+
+### Food-5k
+CNN implementation for predicting whether the image is food
+#### Summary
+ Using transfer learning with a [VGG](https://arxiv.org/abs/1409.1556) model, modified for image classification.
+ 
+ Data augmentation of the image was also used, see [here](https://pytorch.org/docs/stable/torchvision/transforms.html) for more information. <br>
+ 
+ Food-5k data can be found [here](https://mmspg.epfl.ch/downloads/food-image-datasets/)
+#### Findings
+Classification results of the VGG model trained on 5 epochs, final test accuracy of 98.40% <br>
+ 
