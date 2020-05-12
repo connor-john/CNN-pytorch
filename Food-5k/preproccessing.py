@@ -27,19 +27,17 @@ def get_data():
 
     # Get Data -- https://mmspg.epfl.ch/downloads/food-image-datasets/
     # Directories for the data in Keras-style
-    train_dataset = datasets.ImageFolder(
+    train_data = datasets.ImageFolder(
         'data/train',
         transform=train_transform
     )
 
-    test_dataset = datasets.ImageFolder(
+    test_data = datasets.ImageFolder(
         'data/test',
         transform=test_transform
     )
 
-    labels = len(set(train_data.targets))
-
-    return train_data, test_data, labels
+    return train_data, test_data
     
 # prep data
 def get_loaders(train, test, batch_size):
@@ -56,9 +54,9 @@ def get_loaders(train, test, batch_size):
 # make environment
 def make_env(batch_size):
     
-    train_data, test_data, labels = get_data()
+    train_data, test_data = get_data()
 
     train_loader, test_loader = get_loaders(train_data, test_data, batch_size)
 
     print('environment made...')
-    return train_loader, test_loader, labels, test_data
+    return train_loader, test_loader, test_data
